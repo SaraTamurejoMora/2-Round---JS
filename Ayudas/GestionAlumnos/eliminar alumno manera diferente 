@@ -1,0 +1,8 @@
+eliminarAlumno(nombreCompleto) {
+    const alumnoBuscado = this.buscarAlumno(nombreCompleto);
+    if (alumnoBuscado) {
+        this.alumnos = this.alumnos.filter(alumno => 
+            alumno !== alumnoBuscado
+        );
+    }
+}
