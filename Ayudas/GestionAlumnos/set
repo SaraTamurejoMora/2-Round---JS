@@ -1,0 +1,48 @@
+import { Alumno } from "./Alumno.js";
+
+// Clase GestorAlumnos usando Set
+export class GestorAlumnos {
+    constructor() {
+        this.alumnos = new Set();
+    }
+
+    agregarAlumno(alumno) {
+        this.alumnos.add(alumno);
+    }
+
+    buscarAlumno(nombreCompleto) {
+        for (let alumno of this.alumnos) {
+            if (`${alumno.nombre} ${alumno.apellidos}` === nombreCompleto) {
+                return alumno;
+            }
+        }
+        return null;
+    }
+
+    eliminarAlumno(nombreCompleto) {
+        let alumnoBuscado = this.buscarAlumno(nombreCompleto);
+        if (alumnoBuscado) {
+            this.alumnos.delete(alumnoBuscado);
+        }
+    }
+
+    mostrarAlumnosOrdenados() {
+        return Array.from(this.alumnos).sort((a, b) =>
+            a.nombre.localeCompare(b.nombre)
+        );
+    }
+
+    mostrarAlumnosOrdenadosMedia() {
+        return Array.from(this.alumnos).sort((a, b) =>
+            parseFloat(a.media) - parseFloat(b.media)
+        );
+    }
+
+    listarAlumnos() {
+        let resultado = "";
+        for (let alumno of this.alumnos) {
+            resultado += alumno.toString() + "\n";
+        }
+        return resultado;
+    }
+}
