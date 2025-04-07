@@ -1,0 +1,42 @@
+import { Alumno } from "./Alumno.js";
+
+// Clase GestorAlumnos
+export class GestorAlumnos {
+    constructor() {
+        this.alumnos = [];
+    }
+
+    agregarAlumno(alumno) {
+        this.alumnos.push(alumno);
+    }
+
+    buscarAlumno(nombreCompleto) {
+        console.log(nombreCompleto);
+        return this.alumnos.find(alumno => 
+            `${alumno.nombre} ${alumno.apellidos}` === nombreCompleto
+        );
+    }
+
+    eliminarAlumno(nombreCompleto) {
+        const alumnoBuscado = this.buscarAlumno(nombreCompleto);
+        if (alumnoBuscado) {
+            this.alumnos = this.alumnos.filter(
+                alumno => alumno !== alumnoBuscado
+            );
+        }
+    }
+
+    mostrarAlumnosOrdenados() {
+        return [...this.alumnos].sort((a, b) => 
+            a.nombre.localeCompare(b.nombre)
+        );
+    }
+
+    mostrarAlumnosOrdenadosMedia() {
+        return [...this.alumnos].sort((a, b) => a.media - b.media);
+    }
+
+    listarAlumnos() {
+        return this.alumnos;
+    }
+}
